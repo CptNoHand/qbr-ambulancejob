@@ -60,7 +60,7 @@ RegisterNetEvent('hospital:server:ambulanceAlert', function(text)
     local coords = GetEntityCoords(ped)
     local players = exports['qbr-core']:GetQBPlayers()
     for k,v in pairs(players) do
-        if v.PlayerData.job.name == 'ambulance' and v.PlayerData.job.onduty then
+        if v.PlayerData.job.name == 'doctor' and v.PlayerData.job.onduty then
             TriggerClientEvent('hospital:client:ambulanceAlert', v.PlayerData.source, coords, text)
         end
     end
@@ -130,7 +130,7 @@ RegisterNetEvent('hospital:server:SetDoctor', function()
 	local amount = 0
     local players = exports['qbr-core']:GetQBPlayers()
     for k,v in pairs(players) do
-        if v.PlayerData.job.name == 'ambulance' and v.PlayerData.job.onduty then
+        if v.PlayerData.job.name == 'doctor' and v.PlayerData.job.onduty then
             amount = amount + 1
         end
 	end
@@ -162,7 +162,7 @@ end)
 RegisterNetEvent('hospital:server:SendDoctorAlert', function()
     local players = exports['qbr-core']:GetQBPlayers()
     for k,v in pairs(players) do
-        if v.PlayerData.job.name == 'ambulance' and v.PlayerData.job.onduty then
+        if v.PlayerData.job.name == 'doctor' and v.PlayerData.job.onduty then
 			TriggerClientEvent('QBCore:Notify', v.PlayerData.source, Lang:t('info.dr_needed'), 'ambulance')
 		end
 	end
@@ -191,7 +191,7 @@ exports['qbr-core']:CreateCallback('hospital:GetDoctors', function(source, cb)
 	local amount = 0
     local players = exports['qbr-core']:GetQBPlayers()
     for k,v in pairs(players) do
-        if v.PlayerData.job.name == 'ambulance' and v.PlayerData.job.onduty then
+        if v.PlayerData.job.name == 'doctor' and v.PlayerData.job.onduty then
 			amount = amount + 1
 		end
 	end
@@ -240,7 +240,7 @@ exports['qbr-core']:AddCommand('911e', Lang:t('info.ems_report'), {{name = 'mess
     local coords = GetEntityCoords(ped)
     local players = exports['qbr-core']:GetQBPlayers()
     for k,v in pairs(players) do
-        if v.PlayerData.job.name == 'ambulance' and v.PlayerData.job.onduty then
+        if v.PlayerData.job.name == 'doctor' and v.PlayerData.job.onduty then
             TriggerClientEvent('hospital:client:ambulanceAlert', v.PlayerData.source, coords, message)
         end
     end
